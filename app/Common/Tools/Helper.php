@@ -17,15 +17,6 @@ function getVal(array $data, string $target)
     return isset($data[$target]) ? $data[$target] : null;
 }
 
-/**
- * @param int $time
- * @param string $format
- * @return string
- */
-function toDate($time, $format = Setting::DATE_TIME_FORMAT): string
-{
-    return format(Carbon::now()->addSeconds($time), $format);
-}
 
 /**
  * @param Carbon $date

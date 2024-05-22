@@ -6,10 +6,10 @@ namespace App\Modules\Product\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class ProductResource
+ * Class CategoryResource
  * @package App\Modules\Auth\Resources
  */
-class ProductResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * @return array
@@ -20,10 +20,6 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'price' => $this->price,
-            'SKU' => $this->SKU,
-            'create_at' => format($this->created_at),
-            'category' => new CategoryResource($this->category),
         ];
     }
 }

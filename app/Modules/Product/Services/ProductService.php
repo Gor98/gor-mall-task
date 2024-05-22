@@ -8,6 +8,7 @@ use App\Common\Bases\Service;
 use App\Common\Exceptions\RepositoryException;
 use App\Modules\Product\Repositories\ProductRepository;
 use App\Modules\Product\Requests\CreateProductRequest;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -39,5 +40,14 @@ class ProductService extends Service
     public function createProduct(CreateProductRequest $request): Model
     {
         return $this->productRepository->create($request->all());
+    }
+
+    /**
+     * @return Collection
+     * @throws RepositoryException
+     */
+    public function products(): Collection
+    {
+        return $this->productRepository->all(['category']);
     }
 }

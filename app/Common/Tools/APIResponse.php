@@ -40,11 +40,11 @@ class APIResponse
         string $message = 'Successful request.',
         int $status = Response::HTTP_OK
     ): JsonResponse {
+
         return response()->json([
             'message' => $message,
             'status' =>  'success',
             'data' => $response->resource,
-            'pagination' => $response->pagination,
         ], $status);
     }
 
