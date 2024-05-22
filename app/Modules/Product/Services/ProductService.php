@@ -54,4 +54,28 @@ class ProductService extends Service
     {
         return $this->productRepository->all(['category']);
     }
+
+    /**
+     * @param $id
+     * @param $request
+     * @return Model
+     * @throws RepositoryException
+     */
+    public function update($id, $request): Model
+    {
+        return $this->productRepository->update(
+            $request->only(['title', 'description']),
+            $id
+        );
+    }
+
+    /**
+     * @param $product
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete($product): ?bool
+    {
+        return $this->productRepository->delete($product);
+    }
 }

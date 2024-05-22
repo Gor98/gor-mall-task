@@ -6,8 +6,8 @@ namespace App\Modules\Product\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class LoginRequest
- * @package App\Modules\Auth\Requests
+ * Class CreateProductRequest
+ * @package App\Modules\Product\Requests
  */
 class CreateProductRequest extends FormRequest
 {
