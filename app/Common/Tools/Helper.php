@@ -32,7 +32,7 @@ function format(Carbon $date, string $format = Setting::DATE_TIME_FORMAT)
  * @param int $length
  * @return string
  */
-function makeToken(int $length = 8): string
+function makeSKU(int $length = 8): string
 {
     return Str::random($length);
 }

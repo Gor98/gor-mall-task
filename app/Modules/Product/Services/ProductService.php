@@ -31,7 +31,6 @@ class ProductService extends Service
         $this->productRepository = $productRepository;
     }
 
-
     /**
      * @param CreateProductRequest $request
      * @return Model
@@ -39,7 +38,12 @@ class ProductService extends Service
      */
     public function createProduct(CreateProductRequest $request): Model
     {
-        return $this->productRepository->create($request->all());
+        return $this->productRepository->create($request->only([
+            'title',
+            'price',
+            'description',
+            'category_id',
+        ]));
     }
 
     /**
