@@ -4,8 +4,10 @@ use App\Common\Tools\APIResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,9 +20,17 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->render(function (ValidationException $e) {
+            $response = [
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $e->getMessage()
+            ];
+            return APIResponse::errorResponse($response, 'Error request.', $response['status']);
+        });
+
         $exceptions->render(function (Throwable $e) {
             $response = [
-                'status' => $e->getStatusCode(),
+                'status' => $e->getCode(),
                 'message' => $e->getMessage()
             ];
 
